@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const usersController = require('./controllers/usersControllers')
+const toxicController = require('./controllers/toxicsControllers')
 const PORT = 2020
 
 require('./config/database')
@@ -11,5 +12,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.use('/api/users', usersController)
+app.use('/api/toxic', toxicController)
 app.listen(PORT, console.log(`server is on in port ${PORT}`))
 

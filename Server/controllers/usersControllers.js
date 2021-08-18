@@ -1,4 +1,4 @@
-const usersBL = require('../models/usersBL')
+const usersBL = require('../models/Users/usersBL')
 const express = require('express')
 const router = express.Router()
 
