@@ -31,6 +31,7 @@ function createNewToxic(toxicObj){
             likes: 0,
             shares: 0,
             comments: 0,
+            usersHowLiked: []
         })
         newToxic.save(errer =>{
             if(errer) reject(errer)
@@ -48,6 +49,7 @@ function updateToxic(toxicId, updateToxicObj){
             likes: updateToxicObj.likes,
             shares: updateToxicObj.shares,
             comments: updateToxicObj.comments,
+            usersHowLiked: updateToxicObj.usersHowLiked
         }, errer => {
             if(errer){reject(errer)}
             else{

@@ -5,16 +5,17 @@ const Schema = mongoose.Schema,
 ObjectId = Schema.ObjectId;
 
 
-const toxicsSchema = new mongoose.Schema({
+const commentsSchema = new mongoose.Schema({
     userId: ObjectId,
+    toxicId: ObjectId,
     post: String,
-    image: [],
     createdDate: Date,
     updatedDate: Date,
     likes: Number,
     shares: Number,
     comments: Number,
     usersHowLiked : [ObjectId]
+
 })
 
-module.exports = mongoose.model('toxics', toxicsSchema)
+module.exports = mongoose.model('comments', commentsSchema)
