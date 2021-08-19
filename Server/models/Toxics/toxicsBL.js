@@ -20,6 +20,16 @@ function getToxicById(toxicId){
         })
     })
 }
+function getToxicsByUserId(userId){
+    return new Promise((resolve, reject)=>{
+        Toxics.find({userId: userId}, (errer, toxics)=>{
+            if(errer) reject(errer)
+            else{   
+                resolve(toxics)
+            }
+        })
+    })
+}
 function createNewToxic(toxicObj){
     return new Promise((resolve, reject)=>{
         const newToxic = new Toxics({
@@ -68,4 +78,4 @@ function deleteToxicById(toxicId){
         })
     })
 }
-module.exports = {getAllToxics, getToxicById, createNewToxic, updateToxic, deleteToxicById}
+module.exports = {getAllToxics, getToxicById, createNewToxic, updateToxic, deleteToxicById, getToxicsByUserId}

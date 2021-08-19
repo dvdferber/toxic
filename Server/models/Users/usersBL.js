@@ -1,4 +1,5 @@
 const Users = require('./usersModel')
+const Logic = require('../../Logic')
 
 function getAllUsers(){
     return new Promise((resolve, reject)=>{
@@ -25,6 +26,7 @@ function createNewUser(userObj){
         const newUser = new Users({
             userName: userObj.userName,
             password: userObj.password,
+            email: userObj.email,
             name: userObj.name,
             desctption: userObj.desctption,
             userImage: userObj.userImage,
@@ -46,6 +48,7 @@ function updateUser(userId, updateUserObj){
         Users.findByIdAndUpdate(userId, {
             userName: updateUserObj.userName,
             password: updateUserObj.password,
+            email: updateUserObj.email,
             name: updateUserObj.name,
             desctption: updateUserObj.desctption,
             userImage: updateUserObj.userImage,
@@ -72,4 +75,17 @@ function deleteUserById(userId){
         })
     })
 }
-module.exports = {getAllUsers, getUserById, createNewUser, updateUser, deleteUserById}
+function isUserAndPasswordValid(userName, password){
+    return new Promise((resolve, reject)=>{
+        Users.find({userName: userName, password: password}, async(error, user)=>{
+            if(error) {reject(error)}
+            else{
+                let followArray = user[0].follow ?  user[0].follow : [] 
+                let toxics = await Logic.createUserPageByFolwing(followArray)
+                resolve([user, toxics])
+            }
+        })
+        
+    })
+}
+module.exports = {getAllUsers, getUserById, createNewUser, updateUser, deleteUserById, isUserAndPasswordValid}

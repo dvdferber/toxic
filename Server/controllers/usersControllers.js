@@ -8,6 +8,13 @@ router.route('/').get(async (req, resp)=>{
 })
 router.route('/:id').get(async (req, resp)=>{
     let user = await usersBL.getUserById(req.params.id)
+    delete user.password
+    return resp.json(user)
+})
+router.route('/:userName/:password').get(async (req, resp)=>{
+    const userName = req.params.userName.slice(9)
+    const password = req.params.password.slice(9)
+    let user = await usersBL.isUserAndPasswordValid(userName, password)
     return resp.json(user)
 })
 router.route('/').post(async (req, resp)=>{
