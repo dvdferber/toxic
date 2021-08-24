@@ -1,0 +1,36 @@
+body{
+    background-color: lightblue;
+}
+.main{
+    position: relative;
+    left: 5%;
+}
+.main-page-container{
+    background-color: lightblue;
+    position: relative;
+}
+.user-info{
+    background-color: lightblue;
+    position: absolute;
+    border: 2px solid red;
+    border-radius: 25px;
+    padding: 5px;
+    width: 200px;
+    min-height: 500px;
+}
+.all-toxic{
+    background-color: lightblue;
+    position: absolute;
+    min-width: 700px;
+    border: 2px solid red;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 25px;
+    left: 250px;
+}
+.toxic{
+    border: 2px solid red;
+    border-radius: 25px;
+    margin: 3px;
+    padding: 3px;
+}
