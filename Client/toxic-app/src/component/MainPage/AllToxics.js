@@ -5,6 +5,8 @@ import Toxic from "./toxic";
 export default function AllToxics(props){
  
     const [AllToxics, setAllToxics] = useState([123, 123, 123])
+
+
     useEffect(()=>{
         let unmount = true
         const getToxics = async()=>{

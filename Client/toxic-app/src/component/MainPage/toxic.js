@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { userImageUrl} from '../Data/Urls'
 import {getUserInfo} from '../Data/ToxicUtils'
 
 
@@ -13,6 +14,7 @@ export default function Toxic(props){
             let data  = await props.toxic
             unmount && setToxic(data)
             let user = getUserInfo(data.userId)
+            console.log(data.userId);
             unmount && setUser(user)
         }
         unmount && getToxic()
@@ -23,7 +25,10 @@ export default function Toxic(props){
     
     return (
         <div className='toxic'>
-            <div className='user-image'>Image</div>
+            <div >
+                <img className='user-image' src={userImageUrl()}/>
+                <b>{user.name}</b>
+            </div>
             <span>{user.userName} date: {toxic.createdDate}</span><br/>
             <p>{toxic.post}</p>
 

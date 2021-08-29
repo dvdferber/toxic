@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { userImageUrl } from '../Data/Urls'
 
 
 export default function UserInfo(props){
@@ -20,7 +21,9 @@ export default function UserInfo(props){
 
     return (
         <div className='user-info'>
-            <div className='user-image'>user image</div>
+            <div >
+                <img className='user-image' src={userImageUrl()}/>
+            </div>
             <h3>@{user.userName}</h3>
             <div>
                 <span>following</span><br/>

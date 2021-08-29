@@ -34,3 +34,12 @@ body{
     margin: 3px;
     padding: 3px;
 }
+.user-image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.create-new-toxic{
+    position: absolute;
+    top: 600px;
+}

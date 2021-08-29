@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {isUserAndPasswordValid} from '../Data/DAL'
+import {isUserAndPasswordValid} from '../Data/LoginStaffUtils'
 
 
 export default function LogIn(){
@@ -12,8 +12,11 @@ export default function LogIn(){
         e.preventDefault()
         let resp = await isUserAndPasswordValid(userInput.userName, userInput.password)
         if(resp){
-            history.push({pathname: '/main',
-                        data: resp})
+            history.push(
+                {
+                    pathname: '/main',
+                    data: resp
+                })
         }
     }
 
