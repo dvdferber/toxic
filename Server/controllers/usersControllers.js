@@ -7,9 +7,11 @@ router.route('/').get(async (req, resp)=>{
     return resp.json(users)
 })
 router.route('/:id').get(async (req, resp)=>{
-    let user = await usersBL.getUserById(req.params.id)
-    delete user.password
-    return resp.json(user)
+    let id = req.params.id
+    if(id !== undefined){
+        let user = await usersBL.getUserById(id)
+        return resp.json(user)
+    }  
 })
 router.route('/:userName/:password').get(async (req, resp)=>{
     const userName = req.params.userName.slice(9)

@@ -21,7 +21,7 @@ export default function AllToxics(props){
 
     let toxicToRrender = AllToxics.map(toxic => {
         return (
-            <Toxic key={toxic._id} toxic={toxic}/>
+            toxic && <Toxic key={toxic._id} toxic={toxic}/>
         )
     })
     

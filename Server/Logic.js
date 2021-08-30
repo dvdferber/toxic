@@ -7,10 +7,10 @@ async function createUserPageByFolwing(followArray){
         let toxics = await toxicBL.getToxicsByUserId(followArray[i])
         if(toxics.length > 1){
             for (let j = 0; j < toxics.length; j++) {
-                relevantToxic.push(toxics[j])
+                toxics[j] && relevantToxic.push(toxics[j])
             }
         }else{
-            relevantToxic.push(toxics[i])
+            toxics[0] && relevantToxic.push(toxics[0])
         }
     }
     relevantToxic.sort((a, b) => {
@@ -18,7 +18,7 @@ async function createUserPageByFolwing(followArray){
         let dateB = new Date(b.createdDate)
         return dateA - dateB
     })
-    // the fide shold not by more then 100 toxics
+    // the fide should not by more then 100 toxics
     if(relevantToxic.length > 100) relevantToxic.length = 100;
     return relevantToxic
 }

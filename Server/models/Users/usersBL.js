@@ -1,4 +1,5 @@
 const Users = require('./usersModel')
+const ObjectId = require('mongoose').Types.ObjectId
 const Logic = require('../../Logic')
 
 function getAllUsers(){
@@ -12,14 +13,20 @@ function getAllUsers(){
     })
 }
 function getUserById(userId){
-    return new Promise((resolve, reject)=>{
-        Users.findById(userId, (errer, user)=>{
-            if(errer) reject(errer)
-            else{
-                resolve(user)
-            }
+    if(userId !== undefined && userId.match(/^[0-9a-fA-F]{24}$/)){
+        //console.log('in line 17', userId !== undefined);
+        let id = new ObjectId(userId)
+        return new Promise((resolve, reject)=>{
+            Users.findById(id, (errer, user)=>{
+                if(errer) reject(errer)
+                else{
+                    resolve(user)
+                }
+            })
         })
-    })
+    } else{
+        return {user: "not found"}
+    }
 }
 function createNewUser(userObj){
     return new Promise((resolve, reject)=>{
@@ -37,9 +44,13 @@ function createNewUser(userObj){
             follow: [],
             likes: 0
         })
-        newUser.save(errer =>{
+        newUser.save(async(errer) =>{
             if(errer) reject(errer)
-            else resolve(newUser)
+            else {
+                newUser.follow = [newUser._id]
+                await updateUser(newUser._id, newUser )
+                resolve(newUser)
+            }
         })
     })
 }
@@ -82,7 +93,7 @@ function isUserAndPasswordValid(userName, password){
             else{
                 let followArray = user[0].follow ?  user[0].follow : [] 
                 let toxics = await Logic.createUserPageByFolwing(followArray)
-                resolve([user, toxics])
+                resolve({user:user[0], toxics:toxics})
             }
         })
         

@@ -13,11 +13,10 @@ export default function Toxic(props){
         const getToxic = async()=>{
             let data  = await props.toxic
             unmount && setToxic(data)
-            let user = getUserInfo(data.userId)
-            console.log(data.userId);
+            let user = await getUserInfo(data.userId)
             unmount && setUser(user)
         }
-        unmount && getToxic()
+        unmount && getToxic()//
         return ()=>{
             unmount = false
         }
