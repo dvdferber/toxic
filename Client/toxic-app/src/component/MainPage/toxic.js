@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { userImageUrl} from '../Data/Urls'
-import {getUserInfo} from '../Data/ToxicUtils'
+import {getUserInfo, addLike, removeLike} from '../Data/ToxicUtils'
 
 
 export default function Toxic(props){
@@ -16,20 +16,32 @@ export default function Toxic(props){
             let user = await getUserInfo(data.userId)
             unmount && setUser(user)
         }
-        unmount && getToxic()//
+        unmount && getToxic()
         return ()=>{
             unmount = false
         }
     },[props.toxic])
-    
+
+    const addOrRemoveLike = async()=>{
+        if(toxic.usersHowLiked.includes(user._id)){
+            await removeLike(user._id, toxic)
+        }else{
+            await addLike(user._id, toxic)
+        }
+    }
     return (
         <div className='toxic'>
             <div >
                 <img className='user-image' src={userImageUrl()}/>
                 <b>{user.name}</b>
             </div>
-            <span>{user.userName} date: {toxic.createdDate}</span><br/>
+            <span>{user.userName}</span><br/>
+            <span>date: {toxic.createdDate}</span><br/>
             <p>{toxic.post}</p>
+            <span>{toxic.likes}</span>
+            <input type='button' value="like" onClick={addOrRemoveLike}/>
+            <span>{toxic.comments}</span>
+            <input type='button' value="comment"/>
 
         </div>
     )

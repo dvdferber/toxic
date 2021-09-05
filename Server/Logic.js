@@ -16,7 +16,7 @@ async function createUserPageByFolwing(followArray){
     relevantToxic.sort((a, b) => {
         let dateA = new Date(a.createdDate)
         let dateB = new Date(b.createdDate)
-        return dateA - dateB
+        return dateB - dateA
     })
     // the fide should not by more then 100 toxics
     if(relevantToxic.length > 100) relevantToxic.length = 100;
