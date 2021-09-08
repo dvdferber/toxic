@@ -10,7 +10,7 @@ export default function AllToxics(props){
     useEffect(()=>{
         let unmount = true
         const getToxics = async()=>{
-            let data  = await props.toxics
+            let data  = props.toxics
             unmount && setAllToxics(data)
         }
         unmount && getToxics()
@@ -20,8 +20,9 @@ export default function AllToxics(props){
     },[props.toxics])
 
     let toxicToRrender = AllToxics.map(toxic => {
+        let id = toxic._id
         return (
-            toxic && <Toxic key={toxic._id} toxic={toxic}/>
+            toxic && <div key={id}><Toxic  toxic={toxic}/></div>
         )
     })
     

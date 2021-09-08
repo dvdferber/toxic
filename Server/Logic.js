@@ -1,6 +1,11 @@
 const toxicBL = require('./models/Toxics/toxicsBL')
+const usersBL = require('./models/Users/usersBL')
 
-
+async function getUserFollowArray(id){
+    const user = await usersBL.getUserById(id)
+    const followArray = user.follow
+    return followArray
+}
 async function createUserPageByFolwing(followArray){
     let relevantToxic = []
     for (let i = 0; i < followArray.length; i++) {
@@ -24,4 +29,4 @@ async function createUserPageByFolwing(followArray){
 }
 
 
-module.exports = {createUserPageByFolwing}
+module.exports = {createUserPageByFolwing, getUserFollowArray}

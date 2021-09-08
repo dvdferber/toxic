@@ -91,12 +91,28 @@ function isUserAndPasswordValid(userName, password){
         Users.find({userName: userName, password: password}, async(error, user)=>{
             if(error) {reject(error)}
             else{
-                let followArray = user[0].follow ?  user[0].follow : [] 
-                let toxics = await Logic.createUserPageByFolwing(followArray)
-                resolve({user:user[0], toxics:toxics})
+                // let followArray = user[0].follow ?  user[0].follow : [] 
+                // let toxics = Logic.createUserPageByFolwing(followArray)
+                // toxics.then(toxics => {
+                //     console.log(toxics);
+                //     resolve({user:user[0], toxics:toxics})
+                // })
+                resolve(user[0]._id)
             }
         })
         
     })
 }
-module.exports = {getAllUsers, getUserById, createNewUser, updateUser, deleteUserById, isUserAndPasswordValid}
+async function createUserPage(userId){
+    const user = await getUserById(userId)
+    let data = await Logic.createUserPageByFolwing(user.follow)
+    return data  
+}
+module.exports = {getAllUsers, getUserById, createNewUser, updateUser, deleteUserById, isUserAndPasswordValid, createUserPage}
+
+// user.then(user => {
+//     let data = Logic.createUserPageByFolwing(user.follow)
+//     data.then(data => {
+//         return data
+//     }).catch("===")
+// }).catch("nathing to return")

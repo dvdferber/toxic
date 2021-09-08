@@ -8,16 +8,18 @@ export default function LogIn(){
     const history = useHistory()
     const [userInput, setUserInput] = useState({userName: '', password: ''})
 
-    const heandalSubmit = async(e)=>{
+    const heandalSubmit = (e)=>{
         e.preventDefault()
-        let resp = await isUserAndPasswordValid(userInput.userName, userInput.password)
-        if(resp){
+        let resp = isUserAndPasswordValid(userInput.userName, userInput.password)
+        resp.then(data => {
+            console.log(data);
             history.push(
                 {
                     pathname: '/main',
-                    data: resp
+                    id: data
                 })
-        }
+        })
+        .catch()
     }
 
     return(

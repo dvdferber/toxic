@@ -1,7 +1,8 @@
-import {createNewObj, getAll} from './DAL'
-import { usersUrl } from './Urls'
+import {createNewObj, getAll, getById} from './DAL'
+import { usersUrl, userPageUrl } from './Urls'
 
 const url = usersUrl()
+const userpageUrl = userPageUrl()
 
 export async function isUserAndPasswordValid(userName, password){
     const reqUrl = `${url}/userName=${userName}/password=${password}`
@@ -15,4 +16,9 @@ export async function createNewUser(newUser){
         return true
     }
     return false
+}
+export async function createUserPage(id){
+    let respons =  await getById(userpageUrl, id)
+    console.log(respons);
+    return respons
 }

@@ -13,11 +13,18 @@ router.route('/:id').get(async (req, resp)=>{
         return resp.json(user)
     }  
 })
+router.route('/userpage/:id').get(async (req, resp)=>{
+    let id = req.params.id
+    if(id !== undefined){
+        let data = await usersBL.createUserPage(id)
+        return resp.json(data)
+    }  
+})
 router.route('/:userName/:password').get(async (req, resp)=>{
     const userName = req.params.userName.slice(9)
     const password = req.params.password.slice(9)
-    let user = await usersBL.isUserAndPasswordValid(userName, password)
-    return resp.json(user)
+    let id = await usersBL.isUserAndPasswordValid(userName, password)
+    return resp.json(id)
 })
 router.route('/').post(async (req, resp)=>{
     let user = await usersBL.createNewUser(req.body)
