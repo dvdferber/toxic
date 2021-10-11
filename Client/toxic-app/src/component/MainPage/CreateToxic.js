@@ -11,13 +11,15 @@ export default function CreateNewToxic(props){
         newtoxic.userId = props.user._id
         let resp = await publishNewToxic(newtoxic)
         if(resp){
-            console.log(newtoxic);
+            //console.log(newtoxic);
         }
     }
     let createArea = <div className='new-toxic'>
                         <span>Enter new Toxic</span>
                         <textarea onChange={e => setNewToxic({...newtoxic, post: e.target.value})}></textarea>
+                        <br/>
                         <input type='button' value='Save Toxic' onClick={createToxic}/>
+                        <input type='button' value='Cancel' onClick={() => setIsWantToAddNew(!isWantToAddNew)}/>
                     </div>
     return (
         <div className='create-new-toxic'>

@@ -12,7 +12,7 @@ export default function LogIn(){
         e.preventDefault()
         let resp = isUserAndPasswordValid(userInput.userName, userInput.password)
         resp.then(data => {
-            console.log(data);
+            localStorage.setItem('id', data)
             history.push(
                 {
                     pathname: '/main',

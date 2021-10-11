@@ -19,6 +19,5 @@ export async function createNewUser(newUser){
 }
 export async function createUserPage(id){
     let respons =  await getById(userpageUrl, id)
-    console.log(respons);
     return respons
 }

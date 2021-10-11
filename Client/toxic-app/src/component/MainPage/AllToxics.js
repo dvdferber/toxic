@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Toxic from "./toxic";
+import Toxic from "./Toxic";
 
 
 export default function AllToxics(props){
@@ -19,10 +19,10 @@ export default function AllToxics(props){
         }
     },[props.toxics])
 
-    let toxicToRrender = AllToxics.map(toxic => {
+    let toxicToRrender = AllToxics.map((toxic, i) => {
         let id = toxic._id
         return (
-            toxic && <div key={id}><Toxic  toxic={toxic}/></div>
+            toxic && <div key={id}><Toxic key={i} toxic={toxic}/></div>
         )
     })
     

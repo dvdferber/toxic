@@ -7,6 +7,7 @@ async function getUserFollowArray(id){
     return followArray
 }
 async function createUserPageByFolwing(followArray){
+    if(followArray === undefined) return;
     let relevantToxic = []
     for (let i = 0; i < followArray.length; i++) {
         let toxics = await toxicBL.getToxicsByUserId(followArray[i])

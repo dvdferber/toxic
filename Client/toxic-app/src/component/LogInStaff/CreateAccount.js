@@ -14,7 +14,6 @@ export default function CreateAccount(){
         if(userInput.password ===  userInput.confirmPassword){
             let newUser = await createNewUser(userInput)
             if(newUser){
-                console.log(newUser);
                 history.push('/')
             }
         }

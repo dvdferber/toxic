@@ -8,8 +8,9 @@ import MainPageContainer from './MainPage/MainPageContainer'
 export default function MainComponent(){
     return(
         <div className='main'>
-            <h1>Toxic App</h1>
-            <h2>MainComponent</h2>
+            <div className='top-nav-bar'>
+                <h1>Toxic App</h1>
+            </div>
             <Switch>
                 <Route exact path='/' component={LogIn} />
                 <Route path='/create-account' component={CreateAccount} />

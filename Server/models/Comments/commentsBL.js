@@ -10,6 +10,19 @@ function getAllComments(){
         })
     })
 }
+////////////////////////////////////////
+function getCommentsByToxicId(toxicId){
+    return new Promise((resolve, reject)=>{
+        if(toxicId !== undefined){
+            Comments.find({toxicId: toxicId}, (errer, comments)=>{
+                if(errer) reject(errer)
+                else{
+                    resolve(comments)
+                }
+            })
+        }
+    })
+}
 function getCommentById(commentId){
     return new Promise((resolve, reject)=>{
         Comments.findById(commentId, (errer, comment)=>{
@@ -69,4 +82,4 @@ function deleteCommentById(commentId){
         })
     })
 }
-module.exports = {getAllComments, getCommentById, createNewComment, updateComment, deleteCommentById}
+module.exports = {getAllComments, getCommentById, createNewComment, updateComment, deleteCommentById, getCommentsByToxicId}

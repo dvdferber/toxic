@@ -6,6 +6,11 @@ router.route('/').get(async (req, resp)=>{
     let comments = await CommentsBL.getAllComments()
     return resp.json(comments)
 })
+router.route('/commentsfortoxic/:toxicId').get(async (req, resp)=>{
+    let toxicId = req.params.toxicId
+    let comments = await CommentsBL.getCommentsByToxicId(toxicId)
+    return resp.json(comments)
+})
 router.route('/:id').get(async (req, resp)=>{
     let comment = await CommentsBL.getCommentById(req.params.id)
     return resp.json(comment)
